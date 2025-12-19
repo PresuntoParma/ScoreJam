@@ -328,6 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 71792126}
+  anim: {fileID: 71792130}
   speed: 5
   kickCollider: {fileID: 66892964}
   kickWindow: 0.2
@@ -762,7 +763,7 @@ Transform:
   m_GameObject: {fileID: 1641416239}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.11, y: -2.64, z: 0.008797536}
+  m_LocalPosition: {x: 0.89, y: -2.27, z: 0.008797536}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Animator anim;
 
     [Header("Movement Config")]
     [SerializeField] private float speed;
@@ -64,6 +65,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Kick()
     {
+        anim.SetTrigger("pKick");
         print("kick começou");
         kickCollider.enabled = true;
         yield return new WaitForSeconds(kickWindow);
