@@ -1,31 +1,52 @@
 using UnityEngine;
 using System.Collections;
 
-public class ArcoMovimento : MonoBehaviour
+public class BallScript : MonoBehaviour
 {
-    public Transform destino;
-    public float duracao = 1.5f;
-    public float alturaArco = 3f;
+    public Transform target;
+    public float duration = 1.5f;
+    public float arcHeight = 3f;
 
+    [SerializeField] private float kickDistance;
+    [SerializeField] private TargetScript targetScript;
 
-    public void Lancar()
+    private void Update()
     {
-        StartCoroutine(MoverEmArco(transform.position, destino.position));
+        CheckDistance();
+    }
+
+    public void Launch()
+    {
+        StartCoroutine(MoverEmArco(transform.position, target.position));
+    }
+
+    private void CheckDistance()
+    {
+        if (Vector2.Distance(transform.position, target.position) <= kickDistance)
+        {
+            targetScript.KickTime();
+            print("kick time");
+        }
+        else
+        {
+            targetScript.NotKickTime();
+            print("not kick time");
+        }
     }
 
     IEnumerator MoverEmArco(Vector3 inicio, Vector3 fim)
     {
         float tempo = 0f;
 
-        while (tempo < duracao)
+        while (tempo < duration)
         {
-            float t = tempo / duracao;
+            float t = tempo / duration;
 
             // Movimento linear
             Vector3 pos = Vector3.Lerp(inicio, fim, t);
 
             // Arco parabólico (sobe no meio)
-            pos.y += Mathf.Sin(t * Mathf.PI) * alturaArco;
+            pos.y += Mathf.Sin(t * Mathf.PI) * arcHeight;
 
             transform.position = pos;
 
