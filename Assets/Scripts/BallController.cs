@@ -10,6 +10,11 @@ public class BallScript : MonoBehaviour
     [SerializeField] private float kickDistance;
     [SerializeField] private TargetScript targetScript;
 
+    private void Start()
+    {
+        Launch();
+    }
+
     private void Update()
     {
         CheckDistance();
@@ -17,7 +22,7 @@ public class BallScript : MonoBehaviour
 
     public void Launch()
     {
-        StartCoroutine(MoverEmArco(transform.position, target.position));
+        StartCoroutine(Move(transform.position, target.position));
     }
 
     private void CheckDistance()
@@ -34,7 +39,7 @@ public class BallScript : MonoBehaviour
         }
     }
 
-    IEnumerator MoverEmArco(Vector3 inicio, Vector3 fim)
+    IEnumerator Move(Vector3 inicio, Vector3 fim)
     {
         float tempo = 0f;
 
@@ -42,12 +47,8 @@ public class BallScript : MonoBehaviour
         {
             float t = tempo / duration;
 
-            // Movimento linear
             Vector3 pos = Vector3.Lerp(inicio, fim, t);
-
-            // Arco parabólico (sobe no meio)
             pos.y += Mathf.Sin(t * Mathf.PI) * arcHeight;
-
             transform.position = pos;
 
             tempo += Time.deltaTime;
