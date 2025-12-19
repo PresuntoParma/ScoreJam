@@ -8,7 +8,7 @@ public class TargetScript : MonoBehaviour
 
     public void Move()
     {
-        transform.position = new Vector2(Random.Range(-7f, 8f), Random.Range(-5f, 6f));
+        transform.position = new Vector2(Random.Range(-6.1f, 6.2f), Random.Range(-4f, 2.1f));
     }
 
     public void KickTime()
