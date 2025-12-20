@@ -14,6 +14,7 @@ public class TargetScript : MonoBehaviour
     public void KickTime()
     {
         isKickable = true;
+        GetComponent<SpriteRenderer>().color = Color.green;
     }
 
     public bool IsKickable()
@@ -24,6 +25,7 @@ public class TargetScript : MonoBehaviour
     public void NotKickTime()
     {
         isKickable = false;
+        GetComponent<SpriteRenderer>().color = Color.red;
     }
 
     public void TouchGround()

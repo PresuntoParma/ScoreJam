@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections;
+using TMPro;
+using UnityEngine;
 
 public class BallScript : MonoBehaviour
 {
@@ -9,10 +10,14 @@ public class BallScript : MonoBehaviour
 
     [SerializeField] private float kickDistance;
     [SerializeField] private TargetScript targetScript;
+    [SerializeField] private ScoreManager scoreManager;
+    [SerializeField] private GameObject canvasLose;
+    [SerializeField] private TextMeshProUGUI textScoreLose;
 
     private void Start()
     {
         Launch();
+        canvasLose.SetActive(false);
     }
 
     private void Update()
@@ -57,6 +62,8 @@ public class BallScript : MonoBehaviour
 
         transform.position = fim;
         yield return new WaitForSeconds(0.1f);
+        canvasLose.SetActive(true);
+        textScoreLose.text = "Score: " + scoreManager.ScoreLose().ToString();
         Destroy(this.gameObject);
     }
 
@@ -64,9 +71,12 @@ public class BallScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Kick" && targetScript.IsKickable())
         {
+            scoreManager.Score();
             targetScript.Move();
             StopAllCoroutines();
             Launch();
         }
     }
+
+    
 }

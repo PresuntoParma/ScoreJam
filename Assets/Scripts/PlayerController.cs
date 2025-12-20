@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator anim;
+    [SerializeField] private ScoreManager scoreManager;
 
     [Header("Movement Config")]
     [SerializeField] private float speed;
@@ -107,6 +108,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Enemy" && slowed == false)
         {
             StartCoroutine(Slow());
+            scoreManager.LoseCombo();
         }
     }
 

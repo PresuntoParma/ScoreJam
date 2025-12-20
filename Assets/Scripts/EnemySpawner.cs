@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
         float posX = randomX > 0 ? -1 : 1;
 
         Instantiate(enemyPrefab, new Vector2(spawnX * posX, Random.Range(spawnMinY, spawnMaxY + 0.1f)), Quaternion.identity);
-        yield return new WaitForSeconds(Random.Range(2f, 3.1f));
+        yield return new WaitForSeconds(Random.Range(1f, 2.1f));
         StartCoroutine(SpawnEnemy());
     }
 }
