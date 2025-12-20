@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -10,6 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed;
     private float moveX;
     private float moveY;
+    private float baseSpeed;
+    private bool slowed;
 
     [Header("Kick Config")]
     [SerializeField] private BoxCollider2D kickCollider;
@@ -22,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        baseSpeed = speed;
         canKick = true;
     }
 
@@ -95,5 +100,23 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(kickCooldown);
         canKick = true;
         print("cabou cooldown");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy" && slowed == false)
+        {
+            StartCoroutine(Slow());
+        }
+    }
+
+    private IEnumerator Slow()
+    {
+        anim.SetTrigger("pFall");
+        slowed = true;
+        speed -= 3;
+        yield return new WaitForSeconds(1);
+        speed = baseSpeed;
+        slowed = false;
     }
 }
