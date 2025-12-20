@@ -482,7 +482,7 @@ MonoBehaviour:
   target: {fileID: 1641416240}
   duration: 3
   arcHeight: 3
-  kickDistance: 0.8
+  kickDistance: 1
   targetScript: {fileID: 1641416242}
 --- !u!212 &598930113
 SpriteRenderer:

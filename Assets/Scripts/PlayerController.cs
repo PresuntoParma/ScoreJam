@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         GetInput();
+        Flip();
     }
 
     private void FixedUpdate()
@@ -39,6 +40,18 @@ public class PlayerController : MonoBehaviour
     {
         MoveInput();
         KickInput();
+    }
+
+    private void Flip()
+    {
+        if (rb.linearVelocity.x > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else if (rb.linearVelocity.x < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
     }
 
     private void MoveInput()
